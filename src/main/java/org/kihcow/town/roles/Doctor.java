@@ -21,10 +21,6 @@ public class Doctor extends Townie {
 
     public void whenNightStarts(){
         super.whenNightStarts();
-        if(!usedSelfHeal)
-            p.sendMessage("You have 1 self heal left");
-        else
-            p.sendMessage("You have " + "0 self heals" + " left");
         p.sendMessage("You have " + StringUtils.plural("self heal", !usedSelfHeal ? 1:0) + " left");
         possibleTargets = new ArrayList<>();
         for(Townie townie : Townie.playing) {
