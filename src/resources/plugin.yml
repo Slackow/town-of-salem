@@ -1,3 +1,7 @@
 name: Town Of Salem
 main: org.kihcow.town.Main
 version: 1.0.0
+commands:
+   startgame:
+      desciption: Starts The Game.
+      usage: /<command>
