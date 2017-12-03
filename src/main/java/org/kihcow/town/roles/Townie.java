@@ -24,6 +24,8 @@ public class Townie {
     public List<Townie> possibleTargets;
     public BookMeta will;
     public boolean willOpen;
+    public StringBuilder deathMessage = new StringBuilder("");
+    public boolean canChatAtNight;
 
     public void whenNightStarts(){
         p.sendMessage("Night Begun");
@@ -42,7 +44,7 @@ public class Townie {
         else if(canSelectAtNight)
             this.visit(this.target);
         p.sendMessage("Night Over");
-    };
+    }
 
     public void onNightOne(){
 
@@ -58,5 +60,15 @@ public class Townie {
             if (townie.p == p)
                 return townie;
         return null;
+    }
+
+    public void kill(Townie townie, String deathMessage) {
+        if(townie == null) {
+            return;
+        }
+        if(townie.defense < this.attack) {
+            townie.isDead = true;
+            townie.deathMessage.append(deathMessage);
+        }
     }
 }
