@@ -4,8 +4,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.kihcow.town.StringUtils;
 
-import java.util.ArrayList;
-
 public class Doctor extends Townie {
 
     boolean usedSelfHeal;
@@ -19,10 +17,10 @@ public class Doctor extends Townie {
         this.usedSelfHeal = false;
     }
 
+    @Override
     public void whenNightStarts(){
         super.whenNightStarts();
         p.sendMessage("You have " + StringUtils.plural("self heal", !usedSelfHeal ? 1:0) + " left");
-        possibleTargets = new ArrayList<>();
         for(Townie townie : Townie.playing) {
             if(!townie.isDead)
                 possibleTargets.add(townie);
@@ -32,8 +30,7 @@ public class Doctor extends Townie {
 
     }
 
-
-
+    @Override
     public void whenNightEnds(){
         super.whenNightEnds();
         heal(this.target);
